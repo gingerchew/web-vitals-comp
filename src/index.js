@@ -18,7 +18,7 @@ customElements.define(
 				: webv();
 			function webv() {
 				// prettier-ignore
-				console.info('What is this? Check link -> https://web.dev/vitals/');
+				consoleInfo('What is this? Check link -> https://web.dev/vitals/');
 				getLCP(log);
 				getCLS(log, true);
 				getFID(log, true);
@@ -54,7 +54,7 @@ customElements.define(
 						// prettier-ignore
 						consoleWarn('Paint is happening too late (Threshold < 2.5s)');
 					}
-					console.info('Timestamp (in Seconds): ', ts);
+					consoleInfo('Timestamp (in Seconds): ', ts);
 					delta !== value && console.log('Change: ', delta);
 					return;
 				}
@@ -64,7 +64,7 @@ customElements.define(
 						// prettier-ignore
 						consoleWarn('Input delay is too high (Threshold < 100ms)');
 					}
-					console.info('Timestamp (in Milliseconds): ', ts);
+					consoleInfo('Timestamp (in Milliseconds): ', ts);
 					delta !== value && console.log('Change: ', delta);
 					return;
 				}
@@ -73,7 +73,7 @@ customElements.define(
 						// prettier-ignore
 						consoleWarn('Cumulative shift is past threshold (Threshold < 0.1)');
 					}
-					console.info('Layout Shift: ', value);
+					consoleInfo('Layout Shift: ', value);
 					delta !== value && console.log('Change: ', delta);
 					return;
 				}
@@ -86,7 +86,18 @@ customElements.define(
 					'color: #ffc107',
 				].join(';');
 
-				console.warn('%c' + message, style);
+				console.log('%c%s', style, message);
+			}
+
+			function consoleInfo(message, ...props) {
+				var style = [
+					'background-color: rgba(23,162,184, 0.3)',
+					'color: rgb(23,162,184)',
+				].join(';');
+
+				props
+					? console.log('%c%s', style, message, props)
+					: console.log('%c%s', style, message);
 			}
 		}
 	}
