@@ -94,6 +94,7 @@ customElements.define(
 
 			function consoleInfo(message, ...props) {
 				var style = [
+					// TODO: increase contrast of color & background color
 					'background-color: rgba(23,162,184, 0.3)',
 					'color: rgb(23,162,184)',
 					'padding: 2.5px',
