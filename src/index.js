@@ -30,13 +30,13 @@ customElements.define(
 				console.groupCollapsed('Web Vitals Category: ' + title);
 
 				logValue(data);
-				logLastEntry(data.entries);
+				logLastEntry(data);
 
 				console.log('Full ' + data.name + ' Metric: ', data); // log whole object anyways
 				console.groupEnd();
 			}
 
-			function logLastEntry(entries) {
+			function logLastEntry({ entries }) {
 				// log most recent entry instead of the entry array, this prevents eager evaluation
 				var lastEntryIndex = entries.length - 1;
 				var entry = entries[lastEntryIndex];
@@ -52,7 +52,7 @@ customElements.define(
 					ts = value / 1000;
 					if (ts > 2.5) {
 						// prettier-ignore
-						console.warn('Paint is happening too late (Threshold < 2.5s)');
+						consoleWarn('Paint is happening too late (Threshold < 2.5s)');
 					}
 					console.info('Timestamp (in Seconds): ', ts);
 					delta !== value && console.log('Change: ', delta);
@@ -62,7 +62,7 @@ customElements.define(
 					ts = value;
 					if (ts > 100) {
 						// prettier-ignore
-						console.warn('Input delay is too high (Threshold < 100ms)');
+						consoleWarn('Input delay is too high (Threshold < 100ms)');
 					}
 					console.info('Timestamp (in Milliseconds): ', ts);
 					delta !== value && console.log('Change: ', delta);
@@ -71,13 +71,22 @@ customElements.define(
 				if (name === 'CLS') {
 					if (value > 0.1) {
 						// prettier-ignore
-						console.warn('Cumulative shift is past threshold (Threshold < 0.1)');
+						consoleWarn('Cumulative shift is past threshold (Threshold < 0.1)');
 					}
 					console.info('Layout Shift: ', value);
 					delta !== value && console.log('Change: ', delta);
 					return;
 				}
 				return {};
+			}
+
+			function consoleWarn(message) {
+				var style = [
+					'background-color: rgba(255, 193, 7, 0.3)',
+					'color: #ffc107',
+				].join(';');
+
+				console.warn('%c' + message, style);
 			}
 		}
 	}
