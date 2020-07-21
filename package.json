@@ -7,7 +7,7 @@
 	"umd:main": "dist/web-vitals-comp.umd.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"build": "microbundle -f modern,umd"
+		"build": "rm -rf dist/ && microbundle -f modern,umd --sourcemap false"
 	},
 	"keywords": [],
 	"author": "",
