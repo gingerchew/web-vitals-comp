@@ -1,7 +1,7 @@
 {
 	"name": "web-vitals-comp",
 	"version": "1.0.0",
-	"description": "",
+	"description": "A small custom element for web-vitals",
 	"source": "src/index.js",
 	"main": "dist/web-vitals-comp.js",
 	"umd:main": "dist/web-vitals-comp.umd.js",
@@ -16,14 +16,13 @@
 		"husky": "^4.2.5",
 		"microbundle": "^0.12.3",
 		"prettier": "^2.0.5",
-		"pretty-quick": "^2.0.1"
+		"pretty-quick": "^2.0.1",
+		"web-vitals": "^0.2.3"
 	},
 	"husky": {
 		"hooks": {
 			"pre-commit": "pretty-quick --staged"
 		}
 	},
-	"dependencies": {
-		"web-vitals": "^0.2.3"
-	}
+	"dependencies": {}
 }
