@@ -6,12 +6,13 @@ customElements.define(
 		constructor() {
 			super();
 			this.dev = this.hasAttribute('dev');
-			this.template = this.logFunction().toString();
+			this.template = this.logFunction();
 			var el = document.createElement('script');
 			el.innerHTML = this.template;
 			var s = this.attachShadow({ mode: 'open' });
 			this.dev && s.appendChild(el);
 		}
+
 		logFunction() {
 			document.readyState === 'loading'
 				? document.addEventListener('DOMContentLoaded', webv)
@@ -84,6 +85,8 @@ customElements.define(
 				var style = [
 					'background-color: rgba(255, 193, 7, 0.3)',
 					'color: #ffc107',
+					'padding: 2.5px',
+					'margin-bottom: 3px',
 				].join(';');
 
 				console.log('%c%s', style, message);
@@ -93,6 +96,8 @@ customElements.define(
 				var style = [
 					'background-color: rgba(23,162,184, 0.3)',
 					'color: rgb(23,162,184)',
+					'padding: 2.5px',
+					'margin-bottom: 3px',
 				].join(';');
 
 				props
