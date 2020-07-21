@@ -18,5 +18,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "web-vitals": "^0.2.3"
   }
 }
