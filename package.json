@@ -1,26 +1,29 @@
 {
-  "name": "web-vitals-comp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "husky": "^4.2.5",
-    "microbundle": "^0.12.3",
-    "prettier": "^2.0.5",
-    "pretty-quick": "^2.0.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
-    }
-  },
-  "dependencies": {
-    "web-vitals": "^0.2.3"
-  }
+	"name": "web-vitals-comp",
+	"version": "1.0.0",
+	"description": "",
+	"source": "src/index.js",
+	"main": "dist/web-vitals-comp.js",
+	"umd:main": "dist/web-vitals-comp.umd.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "microbundle -f modern,umd"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"devDependencies": {
+		"husky": "^4.2.5",
+		"microbundle": "^0.12.3",
+		"prettier": "^2.0.5",
+		"pretty-quick": "^2.0.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pretty-quick --staged"
+		}
+	},
+	"dependencies": {
+		"web-vitals": "^0.2.3"
+	}
 }
