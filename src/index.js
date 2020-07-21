@@ -19,7 +19,7 @@ customElements.define(
 				: webv();
 			function webv() {
 				// prettier-ignore
-				consoleInfo('What is this? Check link -> https://web.dev/vitals/');
+				console.log('What is this? Check link -> https://web.dev/vitals/');
 				getLCP(log);
 				getCLS(log, true);
 				getFID(log, true);
@@ -101,7 +101,7 @@ customElements.define(
 				].join(';');
 
 				props
-					? console.log('%c%s', style, message, props)
+					? console.log('%c%s', style, message, ...props)
 					: console.log('%c%s', style, message);
 			}
 		}
