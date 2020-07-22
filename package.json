@@ -8,12 +8,12 @@
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"clean": "rm -rf dist",
-		"build": "microbundle -f modern,umd --sourcemap false",
+		"bundle": "microbundle -f modern,umd --sourcemap false",
 		"watch": "microbundle watch -f modern",
 		"server": "http-server",
 		"serve": "run-p watch server",
 		"start": "run-s clean serve",
-		"prepack": "run-s clean build"
+		"build": "run-s clean bundle"
 	},
 	"keywords": [],
 	"author": "",
