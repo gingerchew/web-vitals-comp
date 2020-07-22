@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+			}
+			[data-loaded] img {
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<main id="main">
+			<header id="hero">
+				<img src="https://source.unsplash.com/daily" alt="" />
+				<img src="https://source.unsplash.com/weekly" alt="" hidden />
+			</header>
+			<article>
+				<p>
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+					Sequi iure ducimus nemo exercitationem et, quos dicta quo
+					totam tempore labore laborum cupiditate libero odit quaerat,
+					laboriosam aspernatur ab quis nobis!
+				</p>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Vitae ut culpa magnam, consectetur voluptas quis aut
+					doloribus, dolorem dolor aperiam molestiae recusandae velit
+					vero non cumque. Id error incidunt omnis.
+				</p>
+			</article>
+			<img src="https://source.unsplash.com/daily" alt="" />
+			<img src="https://source.unsplash.com/weekly" alt="" hidden />
+			<img src="https://source.unsplash.com/daily" alt="" />
+			<img src="https://source.unsplash.com/weekly" alt="" hidden />
+			<img src="https://source.unsplash.com/daily" alt="" />
+			<img src="https://source.unsplash.com/weekly" alt="" hidden />
+		</main>
+		<web-vitals>
+			<script async defer src="dist/web-vitals-comp.modern.js"></script>
+		</web-vitals>
+		<script>
+			window.onload = _ =>
+				document.querySelector('[hidden]').removeAttribute('hidden') ||
+				(document.body.dataset.loaded = '');
+		</script>
+	</body>
+</html>
