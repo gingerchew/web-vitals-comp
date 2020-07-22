@@ -1,5 +1,5 @@
 import { getCLS, getLCP, getFID } from 'web-vitals';
-
+import { base, warning, success, info } from './styles/index';
 customElements.define(
 	'web-vitals',
 	class extends HTMLElement {
@@ -19,7 +19,7 @@ customElements.define(
 				: webv();
 			function webv() {
 				// prettier-ignore
-				console.log('What is this? Check link -> https://web.dev/vitals/');
+				consoleLog('What is this? Check link -> https://web.dev/vitals/');
 				getLCP(log);
 				getCLS(log, true);
 				getFID(log, true);
@@ -28,7 +28,7 @@ customElements.define(
 			function log(data) {
 				var title = data.name;
 				if (data.isFinal) title = data.name + ' (Final)';
-				console.groupCollapsed('Web Vitals Category: ' + title);
+				console.groupCollapsed('%cWeb Vitals Category: ' + title, base);
 
 				logValue(data);
 				logLastEntry(data);
@@ -37,24 +37,26 @@ customElements.define(
 				console.groupEnd();
 			}
 
-			function logLastEntry({ entries }) {
+			function logLastEntry(data) {
 				// log most recent entry instead of the entry array, this prevents eager evaluation
-				var lastEntryIndex = entries.length - 1;
-				var entry = entries[lastEntryIndex];
+				var lastEntryIndex = data.entries.length - 1;
+				var entry = data.entries[lastEntryIndex];
 				if (entry.element) console.log('Element: ', entry.element);
 				console.log('Most recent entry: ', entry);
 			}
 
-			function logValue({ value, delta, name }) {
+			function logValue(data) {
+				var value = data.value;
+				var delta = data.delta;
+				var name = data.name;
 				// calculates acceptable values
 				var ts = 0; // timestamp
-				var state = false;
 				if (name === 'LCP') {
 					ts = value / 1000;
-					if (ts > 2.5) {
-						// prettier-ignore
-						consoleWarn('Paint is happening too late (Threshold < 2.5s)');
-					}
+					// prettier-ignore
+					ts > 2.5 ?
+						consoleWarn('Paint is happening too late (Threshold < 2.5s)') :
+						consoleSuccess('Passing');
 					consoleInfo('Timestamp (in Seconds): ', ts);
 					delta !== value && console.log('Change: ', delta);
 					return;
@@ -70,40 +72,35 @@ customElements.define(
 					return;
 				}
 				if (name === 'CLS') {
-					if (value > 0.1) {
-						// prettier-ignore
-						consoleWarn('Cumulative shift is past threshold (Threshold < 0.1)');
-					}
+					// prettier-ignore
+					(value > 0.1) ?
+						consoleWarn('Cumulative shift is past threshold (Threshold < 0.1)') :
+						consoleSuccess('Passing');
 					consoleInfo('Layout Shift: ', value);
-					delta !== value && console.log('Change: ', delta);
+					delta !== value && consoleLog('Change: ', delta);
 					return;
 				}
 				return {};
 			}
 
 			function consoleWarn(message) {
-				var style = [
-					'background-color: rgba(255, 193, 7, 0.3)',
-					'color: #ffc107',
-					'padding: 2.5px',
-					'margin-bottom: 3px',
-				].join(';');
-
-				console.log('%c%s', style, message);
+				console.log('%c%s', warning, message);
 			}
 
 			function consoleInfo(message, ...props) {
-				var style = [
-					// TODO: increase contrast of color & background color
-					'background-color: rgba(23,162,184, 0.3)',
-					'color: rgb(23,162,184)',
-					'padding: 2.5px',
-					'margin-bottom: 3px',
-				].join(';');
-
 				props
-					? console.log('%c%s', style, message, ...props)
-					: console.log('%c%s', style, message);
+					? console.log('%c%s', info, message, ...props)
+					: console.log('%c%s', info, message);
+			}
+
+			function consoleSuccess(message) {
+				console.log('%c%s', success, message);
+			}
+
+			function consoleLog(message) {
+				const props = Array.from(arguments).slice(1, -1);
+
+				console.log(`%c${message}`, base, ...props);
 			}
 		}
 	}
