@@ -5,8 +5,7 @@ customElements.define(
 	class extends HTMLElement {
 		constructor() {
 			super();
-			if (!this.hasAttribute('dev')) return;
-			this.logFunction();
+			if (this.hasAttribute('dev')) this.logFunction();
 		}
 
 		logFunction() {

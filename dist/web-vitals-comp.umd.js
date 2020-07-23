@@ -1,19 +1,19 @@
-!(function (e) {
-	'function' == typeof define && define.amd ? define(e) : e();
+!(function (t) {
+	'function' == typeof define && define.amd ? define(t) : t();
 })(function () {
-	function e(t) {
-		return (e = Object.setPrototypeOf
+	function t(e) {
+		return (t = Object.setPrototypeOf
 			? Object.getPrototypeOf
-			: function (e) {
-					return e.__proto__ || Object.getPrototypeOf(e);
-			  })(t);
+			: function (t) {
+					return t.__proto__ || Object.getPrototypeOf(t);
+			  })(e);
 	}
-	function t(e, n) {
-		return (t =
+	function e(t, n) {
+		return (e =
 			Object.setPrototypeOf ||
-			function (e, t) {
-				return (e.__proto__ = t), e;
-			})(e, n);
+			function (t, e) {
+				return (t.__proto__ = e), t;
+			})(t, n);
 	}
 	function n() {
 		if ('undefined' == typeof Reflect || !Reflect.construct) return !1;
@@ -26,18 +26,18 @@
 				),
 				!0
 			);
-		} catch (e) {
+		} catch (t) {
 			return !1;
 		}
 	}
-	function o(e, i, r) {
+	function o(t, i, r) {
 		return (o = n()
 			? Reflect.construct
-			: function (e, n, o) {
+			: function (t, n, o) {
 					var i = [null];
 					i.push.apply(i, n);
-					var r = new (Function.bind.apply(e, i))();
-					return o && t(r, o.prototype), r;
+					var r = new (Function.bind.apply(t, i))();
+					return o && e(r, o.prototype), r;
 			  }).apply(null, arguments);
 	}
 	function i(n) {
@@ -57,7 +57,7 @@
 				r.set(n, i);
 			}
 			function i() {
-				return o(n, arguments, e(this).constructor);
+				return o(n, arguments, t(this).constructor);
 			}
 			return (
 				(i.prototype = Object.create(n.prototype, {
@@ -68,7 +68,7 @@
 						configurable: !0,
 					},
 				})),
-				t(i, n)
+				e(i, n)
 			);
 		})(n);
 	}
@@ -79,71 +79,71 @@
 				.concat(Date.now(), '-')
 				.concat(Math.floor(8999999999999 * Math.random()) + 1e12);
 		},
-		u = function (e) {
-			var t =
+		u = function (t) {
+			var e =
 				arguments.length > 1 && void 0 !== arguments[1]
 					? arguments[1]
 					: -1;
 			return {
-				name: e,
-				value: t,
+				name: t,
+				value: e,
 				delta: 0,
 				entries: [],
 				id: a(),
 				isFinal: !1,
 			};
 		},
-		l = function (e, t) {
+		l = function (t, e) {
 			try {
-				if (PerformanceObserver.supportedEntryTypes.includes(e)) {
-					var n = new PerformanceObserver(function (e) {
-						return e.getEntries().map(t);
+				if (PerformanceObserver.supportedEntryTypes.includes(t)) {
+					var n = new PerformanceObserver(function (t) {
+						return t.getEntries().map(e);
 					});
-					return n.observe({ type: e, buffered: !0 }), n;
+					return n.observe({ type: t, buffered: !0 }), n;
 				}
-			} catch (e) {}
+			} catch (t) {}
 		},
 		s = !1,
 		p = !1,
-		f = function (e) {
-			s = !e.persisted;
+		f = function (t) {
+			s = !t.persisted;
 		},
 		d = function () {
 			addEventListener('pagehide', f),
 				addEventListener('unload', function () {});
 		},
-		m = function (e) {
-			var t =
+		m = function (t) {
+			var e =
 				arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
 			p || (d(), (p = !0)),
 				addEventListener(
 					'visibilitychange',
-					function (t) {
+					function (e) {
 						'hidden' === document.visibilityState &&
-							e({ timeStamp: t.timeStamp, isUnloading: s });
+							t({ timeStamp: e.timeStamp, isUnloading: s });
 					},
-					{ capture: !0, once: t }
+					{ capture: !0, once: e }
 				);
 		},
-		g = function (e, t, n, o) {
+		g = function (t, e, n, o) {
 			var i;
 			return function () {
-				n && t.isFinal && n.disconnect(),
-					t.value >= 0 &&
+				n && e.isFinal && n.disconnect(),
+					e.value >= 0 &&
 						(o ||
-							t.isFinal ||
+							e.isFinal ||
 							'hidden' === document.visibilityState) &&
-						((t.delta = t.value - (i || 0)),
-						(t.delta || t.isFinal || void 0 === i) &&
-							(e(t), (i = t.value)));
+						((e.delta = e.value - (i || 0)),
+						(e.delta || e.isFinal || void 0 === i) &&
+							(t(e), (i = e.value)));
 			};
 		},
 		v = function () {
 			return (
 				void 0 === r &&
 					((r = 'hidden' === document.visibilityState ? 0 : 1 / 0),
-					m(function (e) {
-						return (r = e.timeStamp);
+					m(function (t) {
+						return (r = t.timeStamp);
 					}, !0)),
 				{
 					get timeStamp() {
@@ -155,10 +155,10 @@
 		h = function () {
 			return (
 				c ||
-					(c = new Promise(function (e) {
+					(c = new Promise(function (t) {
 						return ['scroll', 'keydown', 'pointerdown'].map(
-							function (t) {
-								addEventListener(t, e, {
+							function (e) {
+								addEventListener(e, t, {
 									once: !0,
 									passive: !0,
 									capture: !0,
@@ -183,94 +183,90 @@
 		F = y.concat('color: 3477db;');
 	customElements.define(
 		'web-vitals',
-		(function (e) {
-			var t, n;
+		(function (t) {
+			var e, n;
 			function o() {
-				var t;
-				return (t = e.call(this) || this).hasAttribute('dev')
-					? (t.logFunction(), t)
-					: (function (e) {
-							if (void 0 === e)
-								throw new ReferenceError(
-									"this hasn't been initialised - super() hasn't been called"
-								);
-							return e;
-					  })(t);
+				var e;
+				return (
+					(e = t.call(this) || this).hasAttribute('dev') &&
+						e.logFunction(),
+					e
+				);
 			}
 			return (
-				(n = e),
-				((t = o).prototype = Object.create(n.prototype)),
-				(t.prototype.constructor = t),
-				(t.__proto__ = n),
+				(n = t),
+				((e = o).prototype = Object.create(n.prototype)),
+				(e.prototype.constructor = e),
+				(e.__proto__ = n),
 				(o.prototype.logFunction = function () {
-					function e() {
+					function t() {
 						r(
 							'What is this? Check link -> https://web.dev/vitals/'
 						),
-							(function (e) {
-								var t,
+							(function (t) {
+								var e,
 									n =
 										arguments.length > 1 &&
 										void 0 !== arguments[1] &&
 										arguments[1],
 									o = u('LCP'),
 									i = v(),
-									r = function (e) {
-										var n = e.startTime;
+									r = function (t) {
+										var n = t.startTime;
 										n < i.timeStamp
-											? ((o.value = n), o.entries.push(e))
+											? ((o.value = n), o.entries.push(t))
 											: (o.isFinal = !0),
-											t();
+											e();
 									},
 									c = l('largest-contentful-paint', r);
 								if (c) {
-									t = g(e, o, c, n);
+									e = g(t, o, c, n);
 									var a = function () {
 										o.isFinal ||
 											(c.takeRecords().map(r),
 											(o.isFinal = !0),
-											t());
+											e());
 									};
 									h().then(a), m(a, !0);
 								}
-							})(t),
-							(function (e) {
-								var t,
+							})(e),
+							(function (t) {
+								var e,
 									n =
 										arguments.length > 1 &&
 										void 0 !== arguments[1] &&
 										arguments[1],
 									o = u('CLS', 0),
-									i = function (e) {
-										e.hadRecentInput ||
-											((o.value += e.value),
-											o.entries.push(e),
-											t());
+									i = function (t) {
+										t.hadRecentInput ||
+											((o.value += t.value),
+											o.entries.push(t),
+											e());
 									},
 									r = l('layout-shift', i);
 								r &&
-									((t = g(e, o, r, n)),
-									m(function (e) {
-										var n = e.isUnloading;
+									((e = g(t, o, r, n)),
+									m(function (t) {
+										var n = t.isUnloading;
 										r.takeRecords().map(i),
 											n && (o.isFinal = !0),
-											t();
+											e();
 									}));
-							})(t, !0),
-							(function (e) {
-								var t = u('FID'),
+							})(e, !0),
+							(function (t) {
+								var e = u('FID'),
 									n = v(),
-									o = function (e) {
-										e.startTime < n.timeStamp &&
-											((t.value =
-												e.processingStart -
-												e.startTime),
-											t.entries.push(e),
-											(t.isFinal = !0),
+									o = function (t) {
+										t.startTime < n.timeStamp &&
+											((e.value =
+												t.processingStart -
+												t.startTime),
+											e.entries.push(t),
+											(e.isFinal = !0),
 											r());
 									},
 									i = l('first-input', o),
-									r = g(e, t, i);
+									r = g(t, e, i);
 								i
 									? m(function () {
 											i.takeRecords().map(o),
@@ -279,11 +275,11 @@
 									: window.perfMetrics &&
 									  window.perfMetrics.onFirstInputDelay &&
 									  window.perfMetrics.onFirstInputDelay(
-											function (e, o) {
+											function (t, o) {
 												o.timeStamp < n.timeStamp &&
-													((t.value = e),
-													(t.isFinal = !0),
-													(t.entries = [
+													((e.value = t),
+													(e.isFinal = !0),
+													(e.entries = [
 														{
 															entryType:
 																'first-input',
@@ -294,83 +290,83 @@
 															startTime:
 																o.timeStamp,
 															processingStart:
-																o.timeStamp + e,
+																o.timeStamp + t,
 														},
 													]),
 													r());
 											}
 									  );
-							})(t);
+							})(e);
 					}
-					function t(e) {
-						var t = e.name;
-						e.isFinal && (t = e.name + ' (Final)'),
+					function e(t) {
+						var e = t.name;
+						t.isFinal && (e = t.name + ' (Final)'),
 							console.groupCollapsed(
-								'%cWeb Vitals Category: ' + t,
+								'%cWeb Vitals Category: ' + e,
 								y
 							),
-							(function (e) {
-								var t = e.value,
-									c = e.delta,
-									a = e.name,
+							(function (t) {
+								var e = t.value,
+									c = t.delta,
+									a = t.name,
 									u = 0;
 								'LCP' === a
-									? ((u = t / 1e3) > 2.5
+									? ((u = e / 1e3) > 2.5
 											? n(
 													'Paint is happening too late (Threshold < 2.5s)'
 											  )
 											: i('Passing'),
 									  o('Timestamp (in Seconds): ', u),
-									  c !== t && console.log('Change: ', c))
+									  c !== e && console.log('Change: ', c))
 									: 'FID' === a
-									? ((u = t) > 100 &&
+									? ((u = e) > 100 &&
 											n(
 												'Input delay is too high (Threshold < 100ms)'
 											),
 									  o('Timestamp (in Milliseconds): ', u),
-									  c !== t && console.log('Change: ', c))
+									  c !== e && console.log('Change: ', c))
 									: 'CLS' === a &&
-									  (t > 0.1
+									  (e > 0.1
 											? n(
 													'Cumulative shift is past threshold (Threshold < 0.1)'
 											  )
 											: i('Passing'),
-									  o('Layout Shift: ', t),
-									  c !== t && r('Change: ', c));
-							})(e),
-							(function (e) {
-								var t = e.entries[e.entries.length - 1];
-								t.element &&
-									console.log('Element: ', t.element),
-									console.log('Most recent entry: ', t);
-							})(e),
-							console.log('Full ' + e.name + ' Metric: ', e),
+									  o('Layout Shift: ', e),
+									  c !== e && r('Change: ', c));
+							})(t),
+							(function (t) {
+								var e = t.entries[t.entries.length - 1];
+								e.element &&
+									console.log('Element: ', e.element),
+									console.log('Most recent entry: ', e);
+							})(t),
+							console.log('Full ' + t.name + ' Metric: ', t),
 							console.groupEnd();
 					}
-					function n(e) {
-						console.log('%c%s', S, e);
+					function n(t) {
+						console.log('%c%s', S, t);
 					}
-					function o(e) {
-						var t,
+					function o(t) {
+						var e,
 							n = [].slice.call(arguments, 1);
 						n
-							? (t = console).log.apply(
-									t,
-									['%c%s', F, e].concat(n)
+							? (e = console).log.apply(
+									e,
+									['%c%s', F, t].concat(n)
 							  )
-							: console.log('%c%s', F, e);
+							: console.log('%c%s', F, t);
 					}
-					function i(e) {
-						console.log('%c%s', w, e);
+					function i(t) {
+						console.log('%c%s', w, t);
 					}
-					function r(e) {
-						var t,
+					function r(t) {
+						var e,
 							n = Array.from(arguments).slice(1, -1);
-						(t = console).log.apply(t, ['%c' + e, y].concat(n));
+						(e = console).log.apply(e, ['%c' + t, y].concat(n));
 					}
 					'loading' === document.readyState
-						? document.addEventListener('DOMContentLoaded', e)
-						: e();
+						? document.addEventListener('DOMContentLoaded', t)
+						: t();
 				}),
 				o
 			);
