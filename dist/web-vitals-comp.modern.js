@@ -108,7 +108,7 @@ customElements.define(
 		constructor() {
 			super(),
 				(this.dev = this.hasAttribute('dev')),
-				(this.template = this.logFunction.toString());
+				(this.template = 'function ' + this.logFunction.toString());
 			var e = document.createElement('script');
 			e.innerHTML = this.template;
 			var t = this.attachShadow({ mode: 'open' });

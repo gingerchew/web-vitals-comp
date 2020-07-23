@@ -6,7 +6,7 @@ customElements.define(
 		constructor() {
 			super();
 			this.dev = this.hasAttribute('dev');
-			this.template = this.logFunction.toString();
+			this.template = 'function ' + this.logFunction.toString();
 			var el = document.createElement('script');
 			el.innerHTML = this.template;
 			var s = this.attachShadow({ mode: 'open' });

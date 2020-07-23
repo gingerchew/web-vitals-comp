@@ -105,17 +105,17 @@
 		},
 		s = !1,
 		p = !1,
-		d = function (t) {
+		f = function (t) {
 			s = !t.persisted;
 		},
-		f = function () {
-			addEventListener('pagehide', d),
+		d = function () {
+			addEventListener('pagehide', f),
 				addEventListener('unload', function () {});
 		},
 		m = function (t) {
 			var e =
 				arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-			p || (f(), (p = !0)),
+			p || (d(), (p = !0)),
 				addEventListener(
 					'visibilitychange',
 					function (e) {
@@ -188,7 +188,7 @@
 			function o() {
 				var e;
 				((e = t.call(this) || this).dev = e.hasAttribute('dev')),
-					(e.template = e.logFunction.toString());
+					(e.template = 'function ' + e.logFunction.toString());
 				var n = document.createElement('script');
 				n.innerHTML = e.template;
 				var o = e.attachShadow({ mode: 'open' });
