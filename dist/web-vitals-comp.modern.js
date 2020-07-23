@@ -1,29 +1,29 @@
 var e,
-	t,
-	n = function () {
+	n,
+	t = function () {
 		return ''
 			.concat(Date.now(), '-')
 			.concat(Math.floor(8999999999999 * Math.random()) + 1e12);
 	},
 	i = function (e) {
-		var t =
+		var n =
 			arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : -1;
 		return {
 			name: e,
-			value: t,
+			value: n,
 			delta: 0,
 			entries: [],
-			id: n(),
+			id: t(),
 			isFinal: !1,
 		};
 	},
-	o = function (e, t) {
+	o = function (e, n) {
 		try {
 			if (PerformanceObserver.supportedEntryTypes.includes(e)) {
-				var n = new PerformanceObserver(function (e) {
-					return e.getEntries().map(t);
+				var t = new PerformanceObserver(function (e) {
+					return e.getEntries().map(n);
 				});
-				return n.observe({ type: e, buffered: !0 }), n;
+				return t.observe({ type: e, buffered: !0 }), t;
 			}
 		} catch (e) {}
 	},
@@ -37,34 +37,34 @@ var e,
 			addEventListener('unload', function () {});
 	},
 	l = function (e) {
-		var t = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+		var n = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
 		c || (s(), (c = !0)),
 			addEventListener(
 				'visibilitychange',
-				function (t) {
+				function (n) {
 					'hidden' === document.visibilityState &&
-						e({ timeStamp: t.timeStamp, isUnloading: a });
+						e({ timeStamp: n.timeStamp, isUnloading: a });
 				},
-				{ capture: !0, once: t }
+				{ capture: !0, once: n }
 			);
 	},
-	u = function (e, t, n, i) {
+	u = function (e, n, t, i) {
 		var o;
 		return function () {
-			n && t.isFinal && n.disconnect(),
-				t.value >= 0 &&
-					(i || t.isFinal || 'hidden' === document.visibilityState) &&
-					((t.delta = t.value - (o || 0)),
-					(t.delta || t.isFinal || void 0 === o) &&
-						(e(t), (o = t.value)));
+			t && n.isFinal && t.disconnect(),
+				n.value >= 0 &&
+					(i || n.isFinal || 'hidden' === document.visibilityState) &&
+					((n.delta = n.value - (o || 0)),
+					(n.delta || n.isFinal || void 0 === o) &&
+						(e(n), (o = n.value)));
 		};
 	},
 	d = function () {
 		return (
 			void 0 === e &&
 				((e = 'hidden' === document.visibilityState ? 0 : 1 / 0),
-				l(function (t) {
-					return (e = t.timeStamp);
+				l(function (n) {
+					return (e = n.timeStamp);
 				}, !0)),
 			{
 				get timeStamp() {
@@ -75,19 +75,19 @@ var e,
 	},
 	m = function () {
 		return (
-			t ||
-				(t = new Promise(function (e) {
+			n ||
+				(n = new Promise(function (e) {
 					return ['scroll', 'keydown', 'pointerdown'].map(function (
-						t
+						n
 					) {
-						addEventListener(t, e, {
+						addEventListener(n, e, {
 							once: !0,
 							passive: !0,
 							capture: !0,
 						});
 					});
 				})),
-			t
+			n
 		);
 	};
 const p =
@@ -98,55 +98,49 @@ const p =
 	v = g.concat(
 		"color: #0a0; background-image:url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e\");"
 	),
-	h = g.concat(
+	f = g.concat(
 		"color: #e65722; text-decoration: underline; background-image: url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e65722' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23e65722' stroke='none'/%3e%3c/svg%3e\");"
 	),
-	f = p.concat('color: 3477db;');
+	h = p.concat('color: 3477db;');
 customElements.define(
 	'web-vitals',
 	class extends HTMLElement {
 		constructor() {
-			super(),
-				(this.dev = this.hasAttribute('dev')),
-				(this.template = 'function ' + this.logFunction.toString());
-			var e = document.createElement('script');
-			e.innerHTML = this.template;
-			var t = this.attachShadow({ mode: 'open' });
-			this.dev && t.appendChild(e);
+			super(), this.hasAttribute('dev') && this.logFunction();
 		}
 		logFunction() {
 			function e() {
 				r('What is this? Check link -> https://web.dev/vitals/'),
 					(function (e) {
-						var t,
-							n =
+						var n,
+							t =
 								arguments.length > 1 &&
 								void 0 !== arguments[1] &&
 								arguments[1],
 							a = i('LCP'),
 							c = d(),
 							r = function (e) {
-								var n = e.startTime;
-								n < c.timeStamp
-									? ((a.value = n), a.entries.push(e))
+								var t = e.startTime;
+								t < c.timeStamp
+									? ((a.value = t), a.entries.push(e))
 									: (a.isFinal = !0),
-									t();
+									n();
 							},
 							s = o('largest-contentful-paint', r);
 						if (s) {
-							t = u(e, a, s, n);
+							n = u(e, a, s, t);
 							var p = function () {
 								a.isFinal ||
 									(s.takeRecords().map(r),
 									(a.isFinal = !0),
-									t());
+									n());
 							};
 							m().then(p), l(p, !0);
 						}
-					})(t),
+					})(n),
 					(function (e) {
-						var t,
-							n =
+						var n,
+							t =
 								arguments.length > 1 &&
 								void 0 !== arguments[1] &&
 								arguments[1],
@@ -155,31 +149,31 @@ customElements.define(
 								e.hadRecentInput ||
 									((a.value += e.value),
 									a.entries.push(e),
-									t());
+									n());
 							},
 							r = o('layout-shift', c);
 						r &&
-							((t = u(e, a, r, n)),
+							((n = u(e, a, r, t)),
 							l(function (e) {
-								var n = e.isUnloading;
+								var t = e.isUnloading;
 								r.takeRecords().map(c),
-									n && (a.isFinal = !0),
-									t();
+									t && (a.isFinal = !0),
+									n();
 							}));
-					})(t, !0),
+					})(n, !0),
 					(function (e) {
-						var t = i('FID'),
-							n = d(),
+						var n = i('FID'),
+							t = d(),
 							a = function (e) {
-								e.startTime < n.timeStamp &&
-									((t.value =
+								e.startTime < t.timeStamp &&
+									((n.value =
 										e.processingStart - e.startTime),
-									t.entries.push(e),
-									(t.isFinal = !0),
+									n.entries.push(e),
+									(n.isFinal = !0),
 									r());
 							},
 							c = o('first-input', a),
-							r = u(e, t, c);
+							r = u(e, n, c);
 						c
 							? l(function () {
 									c.takeRecords().map(a), c.disconnect();
@@ -190,10 +184,10 @@ customElements.define(
 									e,
 									i
 							  ) {
-									i.timeStamp < n.timeStamp &&
-										((t.value = e),
-										(t.isFinal = !0),
-										(t.entries = [
+									i.timeStamp < t.timeStamp &&
+										((n.value = e),
+										(n.isFinal = !0),
+										(n.entries = [
 											{
 												entryType: 'first-input',
 												name: i.type,
@@ -206,61 +200,61 @@ customElements.define(
 										]),
 										r());
 							  });
-					})(t);
+					})(n);
 			}
-			function t(e) {
-				var t = e.name;
-				e.isFinal && (t = e.name + ' (Final)'),
-					console.groupCollapsed('%cWeb Vitals Category: ' + t, p),
+			function n(e) {
+				var n = e.name;
+				e.isFinal && (n = e.name + ' (Final)'),
+					console.groupCollapsed('%cWeb Vitals Category: ' + n, p),
 					(function (e) {
-						var t = e.value,
+						var n = e.value,
 							i = e.delta,
 							o = e.name,
 							s = 0;
 						'LCP' === o
-							? ((s = t / 1e3) > 2.5
-									? n(
+							? ((s = n / 1e3) > 2.5
+									? t(
 											'Paint is happening too late (Threshold < 2.5s)'
 									  )
 									: c('Passing'),
 							  a('Timestamp (in Seconds): ', s),
-							  i !== t && console.log('Change: ', i))
+							  i !== n && console.log('Change: ', i))
 							: 'FID' === o
-							? ((s = t) > 100 &&
-									n(
+							? ((s = n) > 100 &&
+									t(
 										'Input delay is too high (Threshold < 100ms)'
 									),
 							  a('Timestamp (in Milliseconds): ', s),
-							  i !== t && console.log('Change: ', i))
+							  i !== n && console.log('Change: ', i))
 							: 'CLS' === o &&
-							  (t > 0.1
-									? n(
+							  (n > 0.1
+									? t(
 											'Cumulative shift is past threshold (Threshold < 0.1)'
 									  )
 									: c('Passing'),
-							  a('Layout Shift: ', t),
-							  i !== t && r('Change: ', i));
+							  a('Layout Shift: ', n),
+							  i !== n && r('Change: ', i));
 					})(e),
 					(function (e) {
-						var t = e.entries[e.entries.length - 1];
-						t.element && console.log('Element: ', t.element),
-							console.log('Most recent entry: ', t);
+						var n = e.entries[e.entries.length - 1];
+						n.element && console.log('Element: ', n.element),
+							console.log('Most recent entry: ', n);
 					})(e),
 					console.log('Full ' + e.name + ' Metric: ', e),
 					console.groupEnd();
 			}
-			function n(e) {
-				console.log('%c%s', h, e);
+			function t(e) {
+				console.log('%c%s', f, e);
 			}
-			function a(e, ...t) {
-				t ? console.log('%c%s', f, e, ...t) : console.log('%c%s', f, e);
+			function a(e, ...n) {
+				n ? console.log('%c%s', h, e, ...n) : console.log('%c%s', h, e);
 			}
 			function c(e) {
 				console.log('%c%s', v, e);
 			}
 			function r(e) {
-				const t = Array.from(arguments).slice(1, -1);
-				console.log('%c' + e, p, ...t);
+				const n = Array.from(arguments).slice(1, -1);
+				console.log('%c' + e, p, ...n);
 			}
 			'loading' === document.readyState
 				? document.addEventListener('DOMContentLoaded', e)

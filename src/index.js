@@ -5,12 +5,8 @@ customElements.define(
 	class extends HTMLElement {
 		constructor() {
 			super();
-			this.dev = this.hasAttribute('dev');
-			this.template = 'function ' + this.logFunction.toString();
-			var el = document.createElement('script');
-			el.innerHTML = this.template;
-			var s = this.attachShadow({ mode: 'open' });
-			this.dev && s.appendChild(el);
+			if (!this.hasAttribute('dev')) return;
+			this.logFunction();
 		}
 
 		logFunction() {
