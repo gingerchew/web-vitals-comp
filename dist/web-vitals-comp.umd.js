@@ -188,7 +188,7 @@
 			function o() {
 				var e;
 				((e = t.call(this) || this).dev = e.hasAttribute('dev')),
-					(e.template = e.logFunction());
+					(e.template = e.logFunction.toString());
 				var n = document.createElement('script');
 				n.innerHTML = e.template;
 				var o = e.attachShadow({ mode: 'open' });
